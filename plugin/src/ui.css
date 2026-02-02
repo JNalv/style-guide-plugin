@@ -1,0 +1,225 @@
+/* ui.css */
+:root {
+  --color-bg: var(--figma-color-bg, #ffffff);
+  --color-bg-secondary: var(--figma-color-bg-secondary, #f5f5f5);
+  --color-text: var(--figma-color-text, #333333);
+  --color-text-secondary: var(--figma-color-text-secondary, #666666);
+  --color-border: var(--figma-color-border, #e5e5e5);
+  --color-brand: var(--figma-color-bg-brand, #0d99ff);
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.container {
+  padding: 16px;
+  min-height: 100vh;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+header h1 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Buttons */
+.primary-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--color-brand);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.locate-btn {
+  padding: 6px 12px;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* States */
+.idle-state,
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.idle-state p,
+.loading-state p {
+  margin-bottom: 16px;
+  color: var(--color-text-secondary);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-brand);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.frame-name {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.subtext {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.error-message {
+  color: var(--color-danger);
+  margin-bottom: 16px;
+}
+
+/* Results */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.frame-result {
+  background: var(--color-bg-secondary);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.frame-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.frame-header h2 {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.score {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.score-good { background: #dcfce7; color: #166534; }
+.score-fair { background: #fef3c7; color: #92400e; }
+.score-poor { background: #fee2e2; color: #991b1b; }
+
+.summary {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+/* Issues */
+.issues {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.issue-card {
+  background: var(--color-bg);
+  border-radius: 6px;
+  padding: 10px;
+  border-left: 3px solid;
+}
+
+.issue-card.severity-high { border-left-color: var(--color-danger); }
+.issue-card.severity-medium { border-left-color: var(--color-warning); }
+.issue-card.severity-low { border-left-color: var(--color-success); }
+
+.issue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.issue-element {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.severity-badge {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.severity-badge.high { background: #fee2e2; color: #991b1b; }
+.severity-badge.medium { background: #fef3c7; color: #92400e; }
+.severity-badge.low { background: #dcfce7; color: #166534; }
+
+.issue-location {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.issue-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.issue-comparison .label {
+  display: block;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+.recommendation {
+  font-size: 11px;
+  color: var(--color-text);
+  background: var(--color-bg-secondary);
+  padding: 8px;
+  border-radius: 4px;
+}

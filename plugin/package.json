@@ -1,0 +1,17 @@
+{
+  "name": "figma-design-style-checker",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.98.0",
+    "@preact/preset-vite": "^2.8.2",
+    "preact": "^10.19.3",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vite-plugin-singlefile": "^2.0.1"
+  }
+}
