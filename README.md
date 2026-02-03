@@ -54,25 +54,22 @@ figma-design-reviewer/
 
 ## Initial Setup
 
-### 1. Create Railway Project
+### 1. Create Railway Project and Connect to GitHub
 
-```bash
-# Install Railway CLI
-npm install -g @railway/cli
+1. Go to [Railway](https://railway.app) and sign in
+2. Click "New Project" → "Deploy from GitHub repo"
+3. Select your `style-guide-plugin` repository
+4. Railway will automatically detect the backend and set up deployment
+5. Set the root directory to `backend` in the service settings
 
-# Login
-railway login
-
-# Initialize project in backend directory
-cd backend
-railway init
-```
+**Note**: Railway will automatically deploy whenever you push to the `main` branch on GitHub.
 
 ### 2. Set Environment Variables in Railway
 
 - Go to your Railway project dashboard
-- Variables → Add: `ANTHROPIC_API_KEY` = your key
-- Railway auto-deploys on git push
+- Select your service → Variables tab
+- Add: `ANTHROPIC_API_KEY` = your Anthropic API key
+- Railway will automatically redeploy with the new variable
 
 ### 3. Get Railway Domain
 
@@ -129,17 +126,27 @@ npm run dev
 
 ### Backend (Railway):
 
+Railway automatically deploys when you push changes to GitHub:
+
 ```bash
-cd backend
 git add .
-git commit -m "Update backend"
-git push  # Railway auto-deploys from main branch
+git commit -m "Update backend with new features"
+git push origin main
 ```
+
+Railway will:
+1. Detect the push to the `main` branch
+2. Automatically build and deploy the backend
+3. Show deployment logs in the Railway dashboard
+4. Make the new version live at your Railway domain
+
+**No manual deployment steps needed** - just push to GitHub!
 
 ### Plugin (Local Development):
 
 - No deployment needed for prototyping
 - Share the `plugin/` folder with teammates for manual installation
+- For broader distribution, consider publishing to Figma Community or as a private org plugin
 
 ## Cost Estimates
 
