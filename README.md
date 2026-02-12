@@ -144,9 +144,9 @@ Railway will:
 
 ### Plugin (Local Development):
 
-- No deployment needed for prototyping
-- Share the `plugin/` folder with teammates for manual installation
-- For broader distribution, consider publishing to Figma Community or as a private org plugin
+- No deployment or submission needed — Figma allows home-made plugins for local use
+- Load the plugin locally via manifest import in Figma Desktop
+- Developers can share the `plugin/` folder with teammates for manual installation
 
 ## Cost Estimates
 
