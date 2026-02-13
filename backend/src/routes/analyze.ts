@@ -22,9 +22,9 @@ analyzeRouter.post('/analyze', async (req: Request, res: Response) => {
     const styleGuide = await loadStyleGuide();
 
     // Analyze with Claude
-    const results = await analyzeDesigns(frames, styleGuide);
+    const analysisResult = await analyzeDesigns(frames, styleGuide);
 
-    res.json({ results });
+    res.json(analysisResult);
   } catch (error) {
     console.error('Analysis error:', error);
     res.status(500).json({ 

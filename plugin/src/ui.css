@@ -226,3 +226,53 @@ header h1 {
   color: var(--color-text);
   margin-bottom: 2px;
 }
+
+/* Journey Section */
+.journey-section {
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.journey-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px;
+}
+
+.journey-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.journey-summary {
+  font-size: 12px;
+  opacity: 0.95;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.journey-issues {
+  background: #f8f9fa;
+  padding: 12px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.journey-issues h3 {
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.journey-issues .issue-card {
+  margin-bottom: 8px;
+}
+
+.journey-issues .issue-card:last-child {
+  margin-bottom: 0;
+}

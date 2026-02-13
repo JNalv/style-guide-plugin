@@ -30,12 +30,18 @@ interface AnalysisResult {
   summary: string;
 }
 
+interface JourneyFeedback {
+  summary: string;
+  issues: DesignIssue[];
+}
+
 type AppState = 'idle' | 'extracting' | 'analyzing' | 'complete' | 'error';
 
 function App() {
   const [state, setState] = useState<AppState>('idle');
   const [progress, setProgress] = useState({ current: 0, total: 0, frameName: '' });
   const [results, setResults] = useState<AnalysisResult[]>([]);
+  const [journeyFeedback, setJourneyFeedback] = useState<JourneyFeedback | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -90,6 +96,7 @@ function App() {
       }
 
       const data = await response.json();
+      setJourneyFeedback(data.journeyFeedback);
       setResults(data.results);
       setState('complete');
     } catch (err) {
@@ -150,19 +157,56 @@ function App() {
 
       {state === 'complete' && (
         <div className="results">
+          {/* Journey-level feedback (new section) */}
+          {journeyFeedback && results.length > 1 && (
+            <div className="journey-section">
+              <div className="journey-header">
+                <h2>Flow Analysis</h2>
+                <p className="journey-summary">{journeyFeedback.summary}</p>
+              </div>
+
+              {journeyFeedback.issues.length > 0 && (
+                <div className="journey-issues">
+                  <h3>Cross-Screen Issues</h3>
+                  {journeyFeedback.issues.map((issue) => (
+                    <div key={issue.id} className={`issue-card severity-${issue.severity}`}>
+                      <div className="issue-header">
+                        <span className="issue-element">{issue.element}</span>
+                        <span className={`severity-badge ${issue.severity}`}>
+                          {issue.severity}
+                        </span>
+                      </div>
+                      <p className="issue-location">{issue.location}</p>
+                      <span className="category-badge">{issue.category}</span>
+                      <div className="recommendations">
+                        <span className="recommendations-label">Recommendations</span>
+                        <ul>
+                          {issue.recommendations.map((rec, recIdx) => (
+                            <li key={recIdx}>{rec}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Existing per-screen results (unchanged) */}
           {results.map((result, idx) => (
             <div key={idx} className="frame-result">
               <div className="frame-header">
                 <h2>{result.frameName}</h2>
               </div>
-              
+
               <p className="summary">{result.summary}</p>
-              
+
               {result.issues.length > 0 && (
                 <div className="issues">
                   {result.issues.map((issue, issueIdx) => (
-                    <div 
-                      key={issueIdx} 
+                    <div
+                      key={issueIdx}
                       className={`issue-card severity-${issue.severity}`}
                     >
                       <div className="issue-header">
@@ -182,7 +226,7 @@ function App() {
                         </ul>
                       </div>
                       {issue.nodeId && (
-                        <button 
+                        <button
                           onClick={() => handleLocate(issue.nodeId!)}
                           className="locate-btn"
                         >
@@ -195,7 +239,7 @@ function App() {
               )}
             </div>
           ))}
-          
+
           <button onClick={handleAnalyze} className="primary-btn">
             Analyze Again
           </button>

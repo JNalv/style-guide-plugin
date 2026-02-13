@@ -44,11 +44,17 @@ export interface AnalysisResult {
   summary: string;
 }
 
+export interface JourneyFeedback {
+  summary: string;
+  issues: DesignIssue[];
+}
+
 export interface AnalyzeRequest {
   frames: FrameData[];
 }
 
 export interface AnalyzeResponse {
+  journeyFeedback: JourneyFeedback;
   results: AnalysisResult[];
 }
 
