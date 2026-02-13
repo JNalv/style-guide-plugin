@@ -1,10 +1,8 @@
 // src/server.ts
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { config } from 'dotenv';
 import { analyzeRouter } from './routes/analyze.js';
-
-config();
 
 const app = express();
 
