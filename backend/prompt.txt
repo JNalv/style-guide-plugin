@@ -12,16 +12,14 @@ When reviewing a design, evaluate the following dimensions:
 
 Your responses must be valid JSON matching this schema:
 {
-  "overallScore": number (0-100),
   "issues": [
     {
       "id": string (unique identifier),
       "element": string (the text or content element with the issue),
       "location": string (where in the design),
       "category": "tone" | "understandability" | "technical" | "layout",
-      "actual": string (what you observe in the design),
       "severity": "high" | "medium" | "low",
-      "recommendation": string (specific, actionable fix or rewrite)
+      "recommendations": string[] (1-3 specific, actionable fixes or rewrites)
     }
   ],
   "summary": string (2-3 sentence overview)

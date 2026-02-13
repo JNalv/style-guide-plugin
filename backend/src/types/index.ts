@@ -34,14 +34,12 @@ export interface DesignIssue {
   location: string;
   nodeId?: string;
   category: 'tone' | 'understandability' | 'technical' | 'layout';
-  actual: string;
   severity: 'high' | 'medium' | 'low';
-  recommendation: string;
+  recommendations: string[];
 }
 
 export interface AnalysisResult {
   frameName: string;
-  overallScore: number;
   issues: DesignIssue[];
   summary: string;
 }

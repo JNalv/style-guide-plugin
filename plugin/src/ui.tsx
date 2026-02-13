@@ -20,14 +20,12 @@ interface DesignIssue {
   location: string;
   nodeId?: string;
   category: 'tone' | 'understandability' | 'technical' | 'layout';
-  actual: string;
   severity: 'high' | 'medium' | 'low';
-  recommendation: string;
+  recommendations: string[];
 }
 
 interface AnalysisResult {
   frameName: string;
-  overallScore: number;
   issues: DesignIssue[];
   summary: string;
 }
@@ -156,9 +154,6 @@ function App() {
             <div key={idx} className="frame-result">
               <div className="frame-header">
                 <h2>{result.frameName}</h2>
-                <span className={`score score-${getScoreClass(result.overallScore)}`}>
-                  {result.overallScore}/100
-                </span>
               </div>
               
               <p className="summary">{result.summary}</p>
@@ -177,11 +172,15 @@ function App() {
                         </span>
                       </div>
                       <p className="issue-location">{issue.location}</p>
-                      <div className="issue-detail">
-                        <span className="category-badge">{issue.category}</span>
-                        <p className="actual">{issue.actual}</p>
+                      <span className="category-badge">{issue.category}</span>
+                      <div className="recommendations">
+                        <span className="recommendations-label">Recommendations</span>
+                        <ul>
+                          {issue.recommendations.map((rec, recIdx) => (
+                            <li key={recIdx}>{rec}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <p className="recommendation">{issue.recommendation}</p>
                       {issue.nodeId && (
                         <button 
                           onClick={() => handleLocate(issue.nodeId!)}
@@ -206,10 +205,5 @@ function App() {
   );
 }
 
-function getScoreClass(score: number): string {
-  if (score >= 80) return 'good';
-  if (score >= 60) return 'fair';
-  return 'poor';
-}
 
 render(<App />, document.getElementById('root')!);

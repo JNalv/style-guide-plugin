@@ -92,7 +92,6 @@ Return ONLY valid JSON, no markdown or explanation.`;
     const parsed = JSON.parse(jsonText);
     return {
       frameName: frame.name,
-      overallScore: parsed.overallScore,
       issues: parsed.issues.map((issue: any, idx: number) => ({
         ...issue,
         id: issue.id || `issue-${idx}`
