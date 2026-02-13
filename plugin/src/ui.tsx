@@ -4,9 +4,7 @@ import { useState, useEffect } from 'preact/hooks';
 import './ui.css';
 
 // Configuration
-const BACKEND_URL = import.meta.env.DEV 
-  ? 'http://localhost:3001' 
-  : 'https://your-app.up.railway.app';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 
 // Types
 interface FrameData {

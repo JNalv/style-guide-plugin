@@ -1,9 +1,10 @@
 {
   "name": "figma-design-style-checker",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "vite build --watch --mode development",
-    "build": "vite build",
+    "dev": "rm -rf dist && BUILD_TARGET=code vite build --watch --mode development & BUILD_TARGET=ui vite build --watch --mode development",
+    "build": "rm -rf dist && BUILD_TARGET=code vite build && BUILD_TARGET=ui vite build",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
