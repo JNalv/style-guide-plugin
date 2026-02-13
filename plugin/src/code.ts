@@ -108,11 +108,11 @@ async function handleAnalyzeSelection() {
 }
 
 async function extractFrameData(frame: FrameNode): Promise<FrameData> {
-  // Export frame as PNG (2x scale for clarity, max 4096px)
-  const exportScale = Math.min(2, 4096 / Math.max(frame.width, frame.height));
-  
+  // Export frame as JPG at 1x scale (sufficient for content/layout review, much smaller payload)
+  const exportScale = Math.min(1, 4096 / Math.max(frame.width, frame.height));
+
   const imageBytes = await frame.exportAsync({
-    format: 'PNG',
+    format: 'JPG',
     constraint: { type: 'SCALE', value: exportScale }
   });
   

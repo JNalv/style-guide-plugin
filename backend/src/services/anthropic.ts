@@ -69,7 +69,7 @@ Return ONLY valid JSON, no markdown or explanation.`;
           type: 'image',
           source: {
             type: 'base64',
-            media_type: 'image/png',
+            media_type: 'image/jpeg',
             data: frame.imageBase64
           }
         }

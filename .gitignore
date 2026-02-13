@@ -37,5 +37,8 @@ yarn-error.log*
 # Railway
 .railway/
 
+# Claude Code agent files
+agent_files/
+
 # Corpus archive (excluded from style guide analysis)
 backend/corpus/archive/
