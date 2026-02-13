@@ -29,6 +29,7 @@ export default defineConfig(() => {
   // UI build: root=src so ui.html outputs to dist/ui.html (not dist/src/ui.html)
   return {
     root: resolve(__dirname, 'src'),
+    envDir: __dirname,
     plugins: [preact(), viteSingleFile()],
     build: {
       outDir: resolve(__dirname, 'dist'),
