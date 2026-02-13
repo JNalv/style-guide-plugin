@@ -3,14 +3,22 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "rm -rf dist && BUILD_TARGET=code vite build --watch --mode development & BUILD_TARGET=ui vite build --watch --mode development",
-    "build": "rm -rf dist && BUILD_TARGET=code vite build && BUILD_TARGET=ui vite build",
+    "clean": "rimraf dist",
+    "dev": "npm run clean && npm-run-all --parallel dev:code dev:ui",
+    "dev:code": "cross-env BUILD_TARGET=code vite build --watch --mode development",
+    "dev:ui": "cross-env BUILD_TARGET=ui vite build --watch --mode development",
+    "build": "npm run clean && npm run build:code && npm run build:ui",
+    "build:code": "cross-env BUILD_TARGET=code vite build",
+    "build:ui": "cross-env BUILD_TARGET=ui vite build",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.98.0",
     "@preact/preset-vite": "^2.8.2",
+    "cross-env": "^10.1.0",
+    "npm-run-all": "^4.1.5",
     "preact": "^10.19.3",
+    "rimraf": "^6.1.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
     "vite-plugin-singlefile": "^2.0.1"

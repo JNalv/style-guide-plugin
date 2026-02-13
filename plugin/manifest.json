@@ -7,7 +7,7 @@
   "editorType": ["figma"],
   "documentAccess": "dynamic-page",
   "networkAccess": {
-    "allowedDomains": ["your-app.up.railway.app"],
+    "allowedDomains": ["https://style-guide-plugin-production.up.railway.app"],
     "reasoning": "Sends design screenshots to backend for AI-powered style guide analysis",
     "devAllowedDomains": ["http://localhost:3001"]
   },

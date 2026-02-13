@@ -19,8 +19,7 @@ interface DesignIssue {
   element: string;
   location: string;
   nodeId?: string;
-  category: 'typography' | 'color' | 'spacing' | 'component' | 'hierarchy';
-  expected: string;
+  category: 'tone' | 'understandability' | 'technical' | 'layout';
   actual: string;
   severity: 'high' | 'medium' | 'low';
   recommendation: string;
@@ -178,15 +177,9 @@ function App() {
                         </span>
                       </div>
                       <p className="issue-location">{issue.location}</p>
-                      <div className="issue-comparison">
-                        <div className="expected">
-                          <span className="label">Expected:</span>
-                          <span>{issue.expected}</span>
-                        </div>
-                        <div className="actual">
-                          <span className="label">Actual:</span>
-                          <span>{issue.actual}</span>
-                        </div>
+                      <div className="issue-detail">
+                        <span className="category-badge">{issue.category}</span>
+                        <p className="actual">{issue.actual}</p>
                       </div>
                       <p className="recommendation">{issue.recommendation}</p>
                       {issue.nodeId && (

@@ -201,19 +201,26 @@ header h1 {
   margin-bottom: 8px;
 }
 
-.issue-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+.issue-detail {
   margin-bottom: 8px;
-  font-size: 11px;
 }
 
-.issue-comparison .label {
-  display: block;
-  font-weight: 500;
-  color: var(--color-text-secondary);
+.category-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
   font-size: 10px;
+  font-weight: 500;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+
+.issue-detail .actual {
+  font-size: 11px;
+  color: var(--color-text);
+  margin-top: 4px;
 }
 
 .recommendation {

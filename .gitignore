@@ -36,3 +36,6 @@ yarn-error.log*
 
 # Railway
 .railway/
+
+# Corpus archive (excluded from style guide analysis)
+backend/corpus/archive/

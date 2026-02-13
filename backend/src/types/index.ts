@@ -33,8 +33,7 @@ export interface DesignIssue {
   element: string;
   location: string;
   nodeId?: string;
-  category: 'typography' | 'color' | 'spacing' | 'component' | 'hierarchy';
-  expected: string;
+  category: 'tone' | 'understandability' | 'technical' | 'layout';
   actual: string;
   severity: 'high' | 'medium' | 'low';
   recommendation: string;

@@ -13,6 +13,7 @@ export default defineConfig(() => {
   if (process.env.BUILD_TARGET === 'code') {
     return {
       build: {
+        target: 'es2017',
         outDir: resolve(__dirname, 'dist'),
         emptyOutDir: false,
         rollupOptions: {
