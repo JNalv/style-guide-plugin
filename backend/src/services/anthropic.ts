@@ -1,10 +1,20 @@
 // src/services/anthropic.ts
 import Anthropic from '@anthropic-ai/sdk';
+import { readFileSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { FrameData, AnalysisResult, DesignIssue } from '../types/index.js';
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
 });
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const PROMPT_PATH = resolve(__dirname, '../../prompt.txt');
+
+function loadSystemPrompt(): string {
+  return readFileSync(PROMPT_PATH, 'utf-8');
+}
 
 export async function analyzeDesigns(
   frames: FrameData[],
@@ -26,31 +36,7 @@ async function analyzeFrame(
   frame: FrameData,
   styleGuide: string
 ): Promise<AnalysisResult> {
-  const systemPrompt = `You are a senior UI/UX design reviewer specializing in design system compliance. 
-You analyze designs precisely against provided style guidelines and provide actionable feedback.
-
-Your responses must be valid JSON matching this schema:
-{
-  "overallScore": number (0-100),
-  "issues": [
-    {
-      "id": string (unique identifier),
-      "element": string (what element has the issue),
-      "location": string (where in the design),
-      "category": "typography" | "color" | "spacing" | "component" | "hierarchy",
-      "expected": string (what the style guide specifies),
-      "actual": string (what you observe in the design),
-      "severity": "high" | "medium" | "low",
-      "recommendation": string (specific fix)
-    }
-  ],
-  "summary": string (2-3 sentence overview)
-}
-
-Severity guidelines:
-- high: Breaks brand consistency or accessibility
-- medium: Noticeable deviation from guidelines
-- low: Minor inconsistency, polish item`;
+  const systemPrompt = loadSystemPrompt();
 
   const userPrompt = `<style_guide>
 ${styleGuide}
